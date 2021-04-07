@@ -1,14 +1,9 @@
 package com.ujian.main.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -24,14 +19,11 @@ public class Dosen {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long idDosen;
 	
-	@Column(name="username")
-	private int username;
+	private String username;
 	private String password;
-	private String nama_dosen;
+	private String namaDosen;
 	
-	@ManyToMany(mappedBy = "lstdosen")	
-	List<PlotMataKuliah> lstplot = new ArrayList<PlotMataKuliah>();
 
 }
