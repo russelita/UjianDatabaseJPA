@@ -22,11 +22,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="Plotmatakuliah")
-public class PlotMataKuliah {
+public class Plotmatakuliah {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idPlotMataKuliah;
+	private long idPlotmatakuliah;
+
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	 @JoinColumn(name="id_matakuliah")

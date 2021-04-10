@@ -1,9 +1,10 @@
 package com.ujian.main.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 import com.ujian.main.entity.Pertanyaan;
 
-public interface PertanyaanRepository extends JpaRepository<Pertanyaan, Long> {
+public interface PertanyaanRepository extends CrudRepository<Pertanyaan, Long> {
+	
 
 }

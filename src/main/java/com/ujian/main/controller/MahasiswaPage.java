@@ -20,6 +20,7 @@ public class MahasiswaPage {
 	public String viewIndexMahasiswa(Model model) {
 		
 		model.addAttribute("listMahasiswa",modelMahasiswa.getAllMahasiswa());
+		model.addAttribute("active",1);
 		
 		return "view_mahasiswa";
 	}
@@ -41,7 +42,7 @@ public class MahasiswaPage {
 		model.addAttribute("listMahasiswa",modelMahasiswa.getAllMahasiswa());
 		
 		
-		return "view_mahasiswa";
+		return "redirect:/mahasiswa/view";
 	}
 	
 	@GetMapping("/mahasiswa/update/{id}")
@@ -61,7 +62,7 @@ public class MahasiswaPage {
 		model.addAttribute("listMahasiswa",modelMahasiswa.getAllMahasiswa());
 		
 		
-		return "view_mahasiswa";
+		return "redirect:/mahasiswa/view";
 	}
 
 }

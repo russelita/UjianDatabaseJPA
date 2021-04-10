@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ujian.main.entity.Dosen;
-import com.ujian.main.entity.Mahasiswa;
 import com.ujian.main.services.ModelDosen;
 
 @Controller
@@ -20,7 +19,7 @@ public class DosenPage {
 	@GetMapping("/dosen/view")
 	public String viewIndexDosen(Model model) {
 		model.addAttribute("listDosen",modelDosen.getAllDosen());
-		
+		model.addAttribute("active",2);		
 		return "view_dosen";
 	}
 	
@@ -41,7 +40,7 @@ public class DosenPage {
 		model.addAttribute("listDosen",modelDosen.getAllDosen());
 		
 		
-		return "view_dosen";
+		return "redirect:/dosen/view";
 	}
 	
 	@GetMapping("/dosen/update/{id}")
@@ -61,7 +60,7 @@ public class DosenPage {
 		model.addAttribute("listDosen",modelDosen.getAllDosen());
 		
 		
-		return "view_dosen";
+		return "redirect:/dosen/view";
 	}
 
 }

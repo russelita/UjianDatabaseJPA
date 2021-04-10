@@ -1,9 +1,9 @@
 package com.ujian.main.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-import com.ujian.main.entity.PlotMataKuliah;
+import com.ujian.main.entity.Plotmatakuliah;
 
-public interface PlotMataKuliahRepository extends JpaRepository<PlotMataKuliah, Long> {
+public interface PlotmatakuliahRepository extends CrudRepository<Plotmatakuliah, Long> {
 
 }

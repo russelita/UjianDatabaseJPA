@@ -19,6 +19,7 @@ public class MKPage {
 	@GetMapping("/matakuliah/view")
 	public String viewIndexMataKuliah(Model model) {
 		model.addAttribute("listMataKuliah",modelMK.getAllMataKuliah());
+		model.addAttribute("active",3);
 		
 		return "view_matakuliah";
 	}
@@ -40,7 +41,7 @@ public class MKPage {
 		model.addAttribute("listMataKuliah",modelMK.getAllMataKuliah());
 		
 		
-		return "view_matakuliah";
+		return "redirect:/matakuliah/view";
 	}
 	
 	@GetMapping("/matakuliah/update/{id}")
@@ -60,7 +61,7 @@ public class MKPage {
 		model.addAttribute("listMataKuliah",modelMK.getAllMataKuliah());
 		
 		
-		return "view_matakuliah";
+		return "redirect:/matakuliah/view";
 	}
 
 }

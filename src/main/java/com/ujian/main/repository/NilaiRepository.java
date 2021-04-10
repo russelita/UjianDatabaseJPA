@@ -1,9 +1,10 @@
 package com.ujian.main.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+
+import org.springframework.data.repository.CrudRepository;
 
 import com.ujian.main.entity.Nilai;
 
-public interface NilaiRepository extends JpaRepository<Nilai, Long> {
+public interface NilaiRepository extends CrudRepository<Nilai, Long> {
 
 }

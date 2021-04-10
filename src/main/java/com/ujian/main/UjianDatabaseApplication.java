@@ -13,7 +13,7 @@ import com.ujian.main.entity.Mahasiswa;
 import com.ujian.main.entity.MataKuliah;
 import com.ujian.main.entity.Nilai;
 import com.ujian.main.entity.Pertanyaan;
-import com.ujian.main.entity.PlotMataKuliah;
+import com.ujian.main.entity.Plotmatakuliah;
 import com.ujian.main.entity.Soal;
 import com.ujian.main.repository.AdminRepository;
 import com.ujian.main.repository.DosenRepository;
@@ -21,14 +21,14 @@ import com.ujian.main.repository.MKRepository;
 import com.ujian.main.repository.MahasiswaRepository;
 import com.ujian.main.repository.NilaiRepository;
 import com.ujian.main.repository.PertanyaanRepository;
-import com.ujian.main.repository.PlotMataKuliahRepository;
+import com.ujian.main.repository.PlotmatakuliahRepository;
 import com.ujian.main.repository.SoalRepository;
 
 @SpringBootApplication
 public class UjianDatabaseApplication implements CommandLineRunner {
 	
 	@Autowired
-	private PlotMataKuliahRepository plotMK;
+	private PlotmatakuliahRepository plotMK;
 	
 	@Autowired
 	private SoalRepository soalRepo;

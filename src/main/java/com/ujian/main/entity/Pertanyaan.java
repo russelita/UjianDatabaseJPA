@@ -19,15 +19,14 @@ public class Pertanyaan {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	private String pertanyaan;
+	private long id;	
+	private String pertanyaan1;
 	private String jawaban1;
 	private String jawaban2;
 	private String jawaban3;
 	private String jawaban4;
-	private String jawaban_benar;
-	private int status_gambar;
+	private String jawabanBenar;
+	private String statusGambar;
         
 	
 
