@@ -41,7 +41,7 @@ public class Plotmatakuliah {
 	
 	
 	 @OneToMany(cascade = CascadeType.ALL)
-	 @JoinColumn(name="id_plotmatakuliah", referencedColumnName = "idPlotMataKuliah")
+	 @JoinColumn(name="id_plotmatakuliah", referencedColumnName = "idPlotmatakuliah")
 	private List<Soal> lstSoal = new ArrayList<Soal>();
 
 }

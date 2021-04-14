@@ -1,5 +1,6 @@
 package com.ujian.main.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ujian.main.entity.LembarPenilaian;
+import com.ujian.main.entity.Pertanyaan;
 import com.ujian.main.entity.Plotmatakuliah;
-import com.ujian.main.entity.Soal;
+import com.ujian.main.entity.UjianHasil;
 import com.ujian.main.services.ModelDosen;
 import com.ujian.main.services.ModelMK;
 import com.ujian.main.services.ModelMahasiswa;
@@ -64,13 +68,14 @@ public class PlotMatakuliahPage {
 	  public String addPlotmatakuliah(@ModelAttribute Plotmatakuliah plot, Model model) {
 		// buat penampung data plot di halaman htmlnya
 		this.modelPlot.addPlotmatakuliah(plot);	
+		model.addAttribute("listPlot",modelPlot.getAllPlotmatakuliah());
 		return "redirect:/plot/view";
 	}
 	
 	@GetMapping("/plot/update/{id}")
 	public String viewUpdatePlotmatakuliah(@PathVariable String id, Model model) {
 		
-		Plotmatakuliah plot = modelPlot.cariPlot(id);
+		Plotmatakuliah plot = modelPlot.getPlotmatakuliahById(id);
 		// buat penampung data soal di halaman htmlnya
 		model.addAttribute("plot",plot);
 		
@@ -87,31 +92,89 @@ public class PlotMatakuliahPage {
 	}
 	
 	@GetMapping("/plot/ujian/{id}")
-	public String addUjianPlotmatakuliah(@PathVariable String id, Model model) {
+	public String viewUjian(@PathVariable String id, Model model) {
 		
-		Plotmatakuliah plot = modelPlot.cariPlot(id);
+		List<Pertanyaan> lstPertanyaan = new ArrayList<Pertanyaan>();
 		
-		model.addAttribute("listSoal", modelSoal.getAllSoal());
-		model.addAttribute("plot",plot);
-		return "add_ujian";
+		
+		Plotmatakuliah plot = modelPlot.getPlotmatakuliahById(id);
+		for (int x = 0 ; x < plot.getLstSoal().size(); x++) {
+			
+			for (int y = 0 ; y < plot.getLstSoal().get(x).getLstPertanyaan().size();y++) {
+				lstPertanyaan.add(plot.getLstSoal().get(x).getLstPertanyaan().get(y));
+			
+			}
+			
+			
+		}
+		
+		List<String> lstJawaban = new ArrayList<String>(lstPertanyaan.size());
+		
+		
+		
+		UjianHasil ujian = new UjianHasil();
+		ujian.setPertanyaan(lstPertanyaan);
+		ujian.setJawaban(lstJawaban);
+		model.addAttribute("ujian",ujian);
+		model.addAttribute("idPlotmata",id);		
+		
+		
+		return "view_ujian";
+		
 	}
 	
-	@PostMapping("/ujian/view")
-	  public String addUjianPlotmatakuliah(@ModelAttribute Plotmatakuliah plot, Model model) {
-		// buat penampung data plot di halaman htmlnya
-		this.modelPlot.addPlotmatakuliah(plot);	
-		return "redirect:/ujian/view";
+	@PostMapping("/plot/ujian/hasil")
+	 public String viewHasilUjian(@ModelAttribute UjianHasil ujian,@RequestParam("idPlotmata") String id, Model model) {
+		
+		List<Pertanyaan> lstPertanyaan = new ArrayList<Pertanyaan>();
+		
+		
+		Plotmatakuliah plot = modelPlot.getPlotmatakuliahById(id);
+		for (int x = 0 ; x < plot.getLstSoal().size(); x++) {
+			
+			for (int y = 0 ; y < plot.getLstSoal().get(x).getLstPertanyaan().size();y++) {
+				lstPertanyaan.add(plot.getLstSoal().get(x).getLstPertanyaan().get(y));
+			
+			}
+			
+			
+		}		
+		
+		ujian.setPertanyaan(lstPertanyaan);
+		
+		LembarPenilaian lembar = hitungNilai(ujian);
+		model.addAttribute("nilai",lembar);
+		
+		
+		
+		return "view_ujian_hasil";
 	}
 	
-	@GetMapping("/ujian/view")
-	public String ujianPlotmatakuliah(Model model) {
+	private LembarPenilaian hitungNilai (UjianHasil ujian) {
 		
-		model.addAttribute("listPlot",modelPlot.getAllPlotmatakuliah());
-		model.addAttribute("listSoal", modelSoal.getAllSoal());
-		model.addAttribute("active",7);
+		LembarPenilaian nilai = new LembarPenilaian();
 		
-		return "view_plot";
+		
+		
+		for(int x =0 ; x < ujian.getJawaban().size();x++) {
+			
+			if(ujian.getJawaban().get(x).equalsIgnoreCase(ujian.getPertanyaan().get(x).getJawabanBenar())){
+				nilai.setBenar(nilai.getBenar()+1);
+				
+			}else {
+				nilai.setSalah(nilai.getSalah()+1);
+			}
+			
+			
+			
+			
+		}
+		
+		nilai.setNilai(nilai.getBenar()/ujian.getPertanyaan().size()*100);
+		
+		
+		return nilai;
+		
 	}
-
 
 }
