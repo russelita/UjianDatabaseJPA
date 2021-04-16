@@ -10,8 +10,7 @@
 </head>
 <body>
 
-<div th:replace="header :: header(active=${active})">
-</div>
+
 
 <div class="container-md">	
 <div class="my-4 p-8 bg-body rounded shadow-md">
@@ -26,6 +25,7 @@
       <th scope="col">Id</th>
       <th scope="col">Username</th>
       <th scope="col">Password</th>
+      <th scope="col">Role</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -35,9 +35,11 @@
       <th scope="row" th:text="${admin.idAdmin}"></th>
       <td th:text="${admin.username}"></td>
       <td th:text="${admin.password}"></td>
+      <td th:text="${admin.role}"></td>
       <td>
          <a th:href="@{/admin/update/{id}(id=${admin.idAdmin})}" class="btn btn-primary btn-sm" tabindex="-1" role="button" ><i class="fa fa-folder" style="font-size:small"></i> Update </a>
          <a th:href="@{/admin/delete/{id}(id=${admin.idAdmin})}" class="btn btn-danger btn-sm" tabindex="-1" role="button" ><i class="fa fa-close" style="font-size:small"></i> Delete </a>
+      	 <a th:href="@{'/mahasiswa/print/'}" class="btn btn-primary btn-sm" tabindex="-1" role="button" >Print Data Mahasiswa</a>
       </td>
     </tr>
     

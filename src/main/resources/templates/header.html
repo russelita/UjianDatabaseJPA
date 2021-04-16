@@ -11,17 +11,21 @@
         <a th:attr="class=${active == 0 ? 'nav-link active' : 'nav-link'}"  href="#">Home</a>
        
         <a th:attr="class=${active == 1 ? 'nav-link active' : 'nav-link'}"  th:href="@{'/mahasiswa/view/'}">Lihat Mahasiswa </a>
-        <a th:attr="class=${active ==2 ? 'nav-link active' : 'nav-link'}"  th:href="@{'/dosen/view/'}">Lihat Dosen </a>
         <a th:attr="class=${active == 3 ? 'nav-link active' : 'nav-link'}"   th:href="@{'/matakuliah/view/'}">Lihat Mata Kuliah</a>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a th:attr="class=${active ==2 ? 'nav-link active' : 'nav-link'}"  th:href="@{'/dosen/view/'}">Lihat Dosen </a>
         <a th:attr="class=${active ==4 ? 'nav-link active' : 'nav-link'}"  th:href="@{'/pertanyaan/view/'}">Lihat Pertanyaan</a>
         <a th:attr="class=${active == 5 ? 'nav-link active' : 'nav-link'}"  th:href="@{'/soal/view/'}">Lihat Soal</a>
-        <a th:attr="class=${active == 7 ? 'nav-link active' : 'nav-link'}"  th:href="@{'/admin/view/'}">Khusus Admin</a>
+        </div>
       </ul>
       
-      <ul class="navbar-nav navbar-right" style="margin-left: 50px;">
+        <ul class="navbar-nav navbar-right" style="margin-left: 50px;">
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
         <a th:attr="class=${active == 6 ? 'nav-link active' : 'nav-link'}"  th:href="@{'/plot/view/'}" style="background-color: rgb(255, 128, 0);">Plot Mata Kuliah</a>
-        <a  class ="nav-link" href="#" tabindex="-1" aria-disabled="true">Logout</a>
+        </div>
+        <a  class ="nav-link" th:href="@{'/logout'}" tabindex="-1" aria-disabled="true">Logout</a>
         </ul>
+      
         
     </div>
   </div>

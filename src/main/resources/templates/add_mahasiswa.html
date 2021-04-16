@@ -16,20 +16,24 @@
 <div class="mb-3">
   <label for="nim" class="form-label">Nim</label>
   <input type="text" class="form-control" id="nim" placeholder="NIM Mahasiwa" th:field="*{nim}">
+  <div class="alert alert-warning" th:if="${#fields.hasErrors('nim')}" th:errors="*{nim}"></div>
 </div>
 <div class="mb-3">
   <label for="nama" class="form-label">Nama Mahasiswa</label>
   <input type="text" class="form-control" id="nama" placeholder="Nama Mahasiwa" th:field="*{namaMahasiswa}">
+  <div class="alert alert-warning" th:if="${#fields.hasErrors('namaMahasiswa')}" th:errors="*{namaMahasiswa}"></div>
 </div>
 
 <div class="mb-3">
   <label for="jk" class="form-label">Jenis Kelamin</label>
   <input type="text" class="form-control" id="jk" placeholder="Pria/Wanita" th:field="*{jenisKelamin}">
+  <div class="alert alert-warning" th:if="${#fields.hasErrors('jenisKelamin')}" th:errors="*{jenisKelamin}"></div>
 </div>
 
 <div class="mb-3">
   <label for="password" class="form-label">Password</label>
   <input type="password" class="form-control" id="password" placeholder="Input Password" th:field="*{password}">
+  <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 </div>
 <input type="hidden" th:field="*{idMahasiswa}">
 

@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
@@ -59,15 +60,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //            .logout().logoutSuccessUrl("/").permitAll();
     	
     	http.authorizeRequests()
-    	.antMatchers("/admin/**").permitAll()
-    	.antMatchers("/mahasiswa/**").authenticated()
-    	.antMatchers("/dosen/**").authenticated()
-    	.antMatchers("/matakuliah/**").authenticated()
-    	.antMatchers("/pertanyaan/**").authenticated()
-    	.antMatchers("/plot/**").authenticated().anyRequest().permitAll()
+    	.antMatchers("/mahasiswa/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+    	.antMatchers("/dosen/**").access("hasRole('ROLE_ADMIN')")
+    	.antMatchers("/matakuliah/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+    	.antMatchers("/pertanyaan/**").access("hasRole('ROLE_ADMIN')")
+    	.antMatchers("/soal/**").access("hasRole('ROLE_ADMIN')")
+    	.antMatchers("/plot/**").access("hasRole('ROLE_ADMIN')").anyRequest().permitAll()
     	.and()
     	.formLogin().loginPage("/login")
-    	.defaultSuccessUrl("/plot/view").permitAll();
+    	.defaultSuccessUrl("/plot/view").permitAll()
+    	.and()
+    	.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
+    	
+    	
+    	
+//    	.logout(logout -> logout
+//    			.logoutUrl("/logout")
+//    			.addLogoutHandler(new SecurityContextLogoutHandler())
+//    			);
+    	
+    	
+    	
     }
  
 

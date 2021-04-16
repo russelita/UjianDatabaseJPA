@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Mahasiswa" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="30fb66b5-1fc8-447c-8051-d4893837d0f4">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[dWppYW5kYXRhYmFzZS5tYWhhc2lzd2EgQVMgLDgwLDEyNiwwYTVjZTM3NS1lNjY5LTRlMWEtYTg3
+ZC03NDM4MzU3ZjliYjE7]]>
+	</property>
+	<field name="nim" class="java.lang.String"/>
+	<field name="namaMahasiswa" class="java.lang.String"/>
+	<field name="jenisKelamin" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="570" height="79" uuid="8d852346-fec8-4e4b-859b-a11df11c0d85"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Playfair Display Black" size="40" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA MAHASISWA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="28" width="80" height="30" uuid="36ab5300-dc95-4f6a-ba2c-9af59eb0d902"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Assistant ExtraBold" size="22"/>
+				</textElement>
+				<text><![CDATA[NIM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="28" width="270" height="30" uuid="6c209728-1a75-4714-adc0-59287ff03130"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Assistant ExtraBold" size="22"/>
+				</textElement>
+				<text><![CDATA[Nama Mahasiswa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="28" width="170" height="30" uuid="b7ae7318-e93b-4b3f-bf95-4c6f139b85d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Assistant ExtraBold" size="22"/>
+				</textElement>
+				<text><![CDATA[Jenis Kelamin]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="62" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="18" width="80" height="30" uuid="4c398275-725d-47c5-8804-ee466701afb8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Assistant ExtraBold" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nim}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="18" width="270" height="30" uuid="c62b3708-feee-4fc5-a55a-140fe01421fa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Assistant ExtraBold" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{namaMahasiswa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="18" width="170" height="30" uuid="93619c3a-80f8-485a-bc40-8a23c51e34d6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Assistant ExtraBold" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jenisKelamin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
